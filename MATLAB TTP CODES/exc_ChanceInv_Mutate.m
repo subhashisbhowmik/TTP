@@ -1,3 +1,5 @@
+%Mutation with 1.City exchange, 2.Multiple selection inversion each with
+%the same probability.
 function ch2=exc_ChanceInv_Mutate(ch,city,object,chance)
     cityArray2=ch.cityArray;
     objectSelector2=ch.objectSelector;

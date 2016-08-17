@@ -1,3 +1,5 @@
+%Crossing with 1.Permutaion crossing for Cities, 2.Uniform crossing of
+%picking plan.
 function ch=perm_Uni_Cross(ch1,ch2)
     pts=[];
     while true

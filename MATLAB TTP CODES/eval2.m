@@ -1,3 +1,4 @@
+%Cost evaluation with Function downloaded from the page on TTP Contest 2014
 function e=eval2(t)
     %t=topChromo(o.data,1);
     

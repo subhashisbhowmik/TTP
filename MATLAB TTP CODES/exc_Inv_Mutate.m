@@ -1,3 +1,5 @@
+%Mutation with 1.Exchange two random cities, 2.Invert selection of one or
+%more object(s).
 function ch2=exc_Inv_Mutate(ch,city,object)
     cityArray2=ch.cityArray;
     objectSelector2=ch.objectSelector;

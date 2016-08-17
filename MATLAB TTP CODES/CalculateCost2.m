@@ -1,3 +1,4 @@
+%General Cost function from given parameters.
 function cost=CalculateCost2(cities, valuableLists, objectLists, cityDistance, rent, maxCap, speed, minSpeed)
 len=length(cities);
 carry=0;

@@ -15,6 +15,8 @@ classdef population <handle
         alpha=2;
     end
     methods (Access=public)
+        %Constructor function. After assigning properties, initialize with
+        %random elements.
         function obj = population(TTPSetObject,size,xOverRate,mutationRate,mutationChance,elites,parentLimit,randomNew,DE,gaussian,alpha)
             obj.size = size;
             obj.randomNew=randomNew;
@@ -29,6 +31,7 @@ classdef population <handle
             obj.alpha=alpha;
             obj.init()
         end
+        %Initialize with random chromosomes
         function init(obj)
             maxSize=0;
             obj.data=[];
@@ -43,6 +46,8 @@ classdef population <handle
             end
             obj.stat=obj.bestChromo(1).cost;
         end
+        %Finds chromosomes with lowest costs. Efficient for small no. of
+        %chromosomes.
         function bests=bestChromo2(obj,number)
             chromoArray=obj.data;
             bests=[];
@@ -59,6 +64,8 @@ classdef population <handle
                 chromoArray(bestIndex)=[];
             end
         end
+        %Sorts and gives chromosomes with the lowest costs. Efficient with
+        %high no. of selection.
         function bests=bestChromo(obj,number)
             chromoArray=obj.data;
             bests=[];
@@ -69,6 +76,8 @@ classdef population <handle
                 bests=[bests chromoArray(I(i))];
             end
         end
+        %Calculates next generation, with elites, and random chromosomes.
+        %rest with mutated crossings.
         function c=nextGen(obj)
             possibleParents=obj.bestChromo(obj.size);
             
@@ -133,6 +142,8 @@ classdef population <handle
             obj.stat=[obj.stat c];
             %           plot(obj.stat);
         end
+        %Selects parents randomly from a given parent set, ie, a number of
+        %chromosomes with the lowest costs.
         function [p,i]=selectParent(obj,parentSet)
             
             index=length(parentSet);
@@ -147,6 +158,7 @@ classdef population <handle
             p=parentSet(i);
             
         end
+        %Another similar function
         function [p,i]=selectParent2(obj,parentSet,j)
             i=j;
             while i==j
@@ -163,6 +175,8 @@ classdef population <handle
             p=parentSet(i);
             
         end
+        %Runs EA, upto a max. no. of iterations, or till a stopping cost is
+        %reached.
         function res=run(obj,maxIterations,stoppingCost)
             
             cost=Inf;

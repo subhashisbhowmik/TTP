@@ -1,3 +1,5 @@
+%Holds City order and picking plan, along with the constant parameters in
+%TTPSetObject. Calculates cost whenever created. Thus Immutable.
 classdef Chromosome
     properties (Access = public)
         cityArray = [];

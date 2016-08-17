@@ -1,3 +1,4 @@
+%Mutable Class for strong object Weight and values
 classdef ValuableList <handle
    properties (Access = public)
       data = [];

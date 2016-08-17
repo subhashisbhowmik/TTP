@@ -1,3 +1,4 @@
+%Class For storing all constant data in one place
 classdef TTPSet
     properties (Access = public)
       distanceMatrix = [];
@@ -8,6 +9,7 @@ classdef TTPSet
       minSpeed=0;
     end
     methods
+        %Constructor Function
         function obj=TTPSet(distanceMatrix,valuableList,rent,maxCap,speed,minSpeed)
             obj.distanceMatrix=distanceMatrix;
             obj.valuableList=valuableList;
