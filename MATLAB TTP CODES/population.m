@@ -1,3 +1,4 @@
+%Base Population holder class.
 classdef population <handle
     properties (Access = public)
         data = [];
