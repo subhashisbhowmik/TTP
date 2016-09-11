@@ -1,4 +1,3 @@
-%Base Population holder class.
 classdef population <handle
     properties (Access = public)
         data = [];
@@ -135,10 +134,11 @@ classdef population <handle
             end
             obj.data=newGen;
             
-            plot(obj.stat)
-            drawnow
-            hold on
+            %plot(obj.stat)
+            %drawnow
+            %hold on
             c=obj.bestChromo2(1);
+            c.drawPath();
             c=c(1).cost;
             obj.stat=[obj.stat c];
             %           plot(obj.stat);
@@ -183,8 +183,14 @@ classdef population <handle
             cost=Inf;
             for i=1:maxIterations
                 cost=obj.nextGen();
+                if mod(i,100)==1
+                   l=numel(obj.data);
+                   for k=1:l
+                      obj.data(k).twoOpt(); 
+                   end
+                end
                 if mod(i,1)==0
-                    fprintf('Generation %d, Lowest Cost %f\n',i,cost) ;
+                    fprintf('%d.Generation %d, Lowest Cost %f\n',i,numel(obj.stat),cost) ;
                 end
                 if cost<stoppingCost
                     break

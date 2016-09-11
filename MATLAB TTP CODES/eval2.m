@@ -19,5 +19,5 @@ function e=eval2(t)
     av=av';
     selection=2:280;
     selection=selection.*t.objectSelector(2:end)';
-    e=TTP1Objective(dismat,vallist,weightlist,av,[tour 1],selection, woks,vmax,vmin,rent);
+    e=TTP1Objective(dismat,vallist,weightlist,av,[tour tour(1)],selection, woks,vmax,vmin,rent);
 end

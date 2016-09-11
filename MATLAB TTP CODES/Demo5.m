@@ -2,8 +2,6 @@
 %     5 0 5 6;
 %     6 5 0 4;
 %     6 6 4 0];
-global cityList;
-
 cityList=table2array(readtable('1_city.txt'));
 objList=table2array(readtable('1_obj.txt'));
 x=length(cityList(:,1));
@@ -33,7 +31,7 @@ minSpeed=0.1;
 maxCap=25936;
 TTPSetObject=TTPSet(distanceMat,valuableList,rent,maxCap,speed,minSpeed);
 %TTPCost(TTPSetObject,cities,objectList)
-
+number_of_population=10;
 size=100;
 randomNew=15;
 xOverRate=1;
@@ -44,14 +42,42 @@ parents=15;
 DE=0;
 gaussian=0;
 alpha=5;
-global pop;
-pop=population(TTPSetObject,size,xOverRate,mutationRate,mutationChance,elites,parents,randomNew,DE,gaussian,alpha);
-
 minCost=-16099;
-maxIter=Inf;
-pop.init();
-topChromo(pop.data,1)
-a=pop.run(maxIter,minCost);
+populations=[];
+for k=1:number_of_population
+    
+    pop=population(TTPSetObject,size,xOverRate,mutationRate,mutationChance,elites,parents,randomNew,DE,gaussian,alpha);
+    
+    pop.init();
+    topChromo(pop.data,1)
+    %a=pop.run(1,minCost);
+    populations=[populations pop];
+end
+while 1
+    costs=[];
+    for k=1:number_of_population
+        populations(k).run(1,minCost);
+        costs=[costs populations(k).bestChromo2(1).cost];
+    end
+    
+    costsum=sum(costs);
+    costs=costs./costsum;
+    
+    [costs,I]=sort(costs);
+    costs
+    populations=populations(I);
+    prob=rand();
+    total=0;
+    selectiontill=1;
+    for i=1:number_of_population
+        total=total+costs(i);
+        if total >= prob
+            selectiontill=i;
+        end
+    end
+    
+    
+end
 save pop2791.mat pop
 a
 a.objectSelector;
