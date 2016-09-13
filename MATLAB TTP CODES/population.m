@@ -186,7 +186,7 @@ classdef population <handle
                 if mod(i,100)==1
                    l=numel(obj.data);
                    for k=1:l
-                      obj.data(k).twoOptCity(); 
+                      obj.data(k).twoOpt(); 
                    end
                 end
                 if mod(i,1)==0
